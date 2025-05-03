@@ -1,4 +1,3 @@
-import { DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
 import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
 import { type SharedData } from '@/types';
@@ -18,13 +17,15 @@ export function NavUser() {
 
     return (
         <SidebarMenu>
-            <SidebarMenuItem>
-                <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                    <div className="grid flex-1 text-left text-sm leading-tight">
-                        <span className="truncate font-medium">{auth.user.name}</span>
-                        <span className="text-muted-foreground truncate text-xs">{auth.user.email}</span>
-                    </div>
-                </div>
+            <SidebarMenuItem className='space-y-2'>
+                <Button variant="outline" asChild>
+                    <Link href="/settings" className="h-auto w-full flex items-center gap-2 text-left text-sm">
+                        <div className="grid flex-1 text-left text-sm leading-tight">
+                            <span className="truncate font-medium">{auth.user.name}</span>
+                            <span className="text-muted-foreground truncate text-xs">{auth.user.email}</span>
+                        </div>
+                    </Link>
+                </Button>
                 <Button variant="destructive" asChild>
                     <Link className="block w-full cursor-pointer" method="post" href={route('logout')} as="button" onClick={handleLogout}>
                         <LogOutIcon className="mr-2" />

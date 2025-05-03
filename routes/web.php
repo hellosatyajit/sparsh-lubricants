@@ -5,7 +5,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
-    return Inertia::render('welcome');
+    return Redirect::route('login');
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -22,3 +22,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';

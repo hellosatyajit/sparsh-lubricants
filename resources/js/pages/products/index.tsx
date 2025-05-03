@@ -8,7 +8,7 @@ import AppLayout from '@/layouts/app-layout';
 import { Product, productFormSchema } from '@/lib/schema';
 import { BreadcrumbItem } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { router } from '@inertiajs/core';
+import { router } from '@inertiajs/react';
 import { Head } from '@inertiajs/react';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -37,6 +37,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function Products({ products }: Props) {
+    console.log(products);
     const [isAddOpen, setIsAddOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -175,7 +176,7 @@ export default function Products({ products }: Props) {
         <AppLayout breadcrumbs={breadcrumbs} cta={<AddProductDialog />}>
             <Head title="Products" />
             <div className="mx-auto w-full max-w-7xl p-2 sm:p-6 lg:p-8">
-                <div className="border bg-white rounded-lg">
+                <div className="rounded-lg border bg-white">
                     <Table>
                         <TableHeader>
                             <TableRow>

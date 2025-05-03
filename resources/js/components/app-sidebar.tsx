@@ -2,8 +2,8 @@ import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/react';
-import { BriefcaseBusiness, CreditCard, FileText, LayoutGrid, MessagesSquare, Package, ReceiptIndianRupee, Settings, UsersRound } from 'lucide-react';
+import { Link, usePage } from '@inertiajs/react';
+import { BriefcaseBusiness, CreditCard, FileText, LayoutGrid, MessagesSquare, Package, ReceiptIndianRupee, ShieldCheck } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -42,19 +42,30 @@ const mainNavItems: NavItem[] = [
         href: '/payments',
         icon: CreditCard,
     },
-    {
-        title: 'Users',
-        href: '/users',
-        icon: UsersRound,
-    },
-    {
-        title: 'Settings',
-        href: '/settings',
-        icon: Settings,
-    },
 ];
 
+type PageProps = {
+    auth: {
+        user: {
+            id: number;
+            name: string;
+            email: string;
+            role: string;
+        } | null;
+    };
+};
+
 export function AppSidebar() {
+    const { auth } = usePage<PageProps>().props;
+    
+    if (auth.user?.role === 'admin') {
+        mainNavItems.push({
+            title: 'Admin',
+            href: '/admin',
+            icon: ShieldCheck,
+        });
+    }
+
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>
