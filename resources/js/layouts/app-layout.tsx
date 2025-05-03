@@ -8,13 +8,14 @@ import { type BreadcrumbItem } from '@/types';
 interface AppLayoutProps {
     children: ReactNode;
     breadcrumbs?: BreadcrumbItem[];
+    cta?: ReactNode;
 }
 
-export default ({ children, breadcrumbs }: AppLayoutProps) => (
+export default ({ children, breadcrumbs, cta }: AppLayoutProps) => (
     <AppShell>
         <AppSidebar />
         <AppContent>
-            <AppSidebarHeader breadcrumbs={breadcrumbs} />
+            <AppSidebarHeader breadcrumbs={breadcrumbs} cta={cta} />
             {children}
         </AppContent>
     </AppShell>
